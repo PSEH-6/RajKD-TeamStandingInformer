@@ -56,9 +56,9 @@ public class StandingController {
 
     private String responseBuilder(final TeamStandingDetails teamStandingDetails) {
         final String response = "<ul>\n" +
-                "<li>Country ID & Name : %s - %s</li>\n" +
-                "<li>League ID & Name: %s - %s</li>\n" +
-                "<li>Team ID & Name : %s - %s</li>\n" +
+                "<li>Country ID & Name : (%s) - %s</li>\n" +
+                "<li>League ID & Name: (%s) - %s</li>\n" +
+                "<li>Team ID & Name : (%s) - %s</li>\n" +
                 "<li>Overall League Position: %s</li>\n" +
                 "</ul>";
 
