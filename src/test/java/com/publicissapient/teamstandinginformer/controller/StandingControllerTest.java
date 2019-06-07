@@ -45,7 +45,7 @@ public class StandingControllerTest {
                 .thenReturn(Option.some(new TeamStandingDetails("173", "France", "128", "Ligue 2", null, null)));
 
         when(standingService.getTeamStandingDetails("128", "Brest"))
-                .thenReturn(Option.some(new TeamStandingDetails("173", "France", "128", "Ligue 2", "128", "Brest")));
+                .thenReturn(Option.some(new TeamStandingDetails("173", "France", "128", "Ligue 2", "Brest", "2")));
 
         MvcResult mvcResult = mockMvc
                 .perform(MockMvcRequestBuilders.get("/standing?countryName=France&leagueName=Ligue 2&teamName=Brest")
@@ -54,10 +54,10 @@ public class StandingControllerTest {
 
         assertThat(mvcResult.getResponse().getStatus(), is(200));
         assertThat(mvcResult.getResponse().getContentAsString(), is("<ul>\n" +
-                "<li>Country ID & Name : 173 - France</li>\n" +
-                "<li>League ID & Name: 128 - Ligue 2</li>\n" +
-                "<li>Team ID & Name : 128 - 128</li>\n" +
-                "<li>Overall League Position: Brest</li>\n" +
+                "<li>Country ID & Name : (173) - France</li>\n" +
+                "<li>League ID & Name: (128) - Ligue 2</li>\n" +
+                "<li>Team ID & Name : (Brest) - Brest</li>\n" +
+                "<li>Overall League Position: 2</li>\n" +
                 "</ul>"));
     }
 
