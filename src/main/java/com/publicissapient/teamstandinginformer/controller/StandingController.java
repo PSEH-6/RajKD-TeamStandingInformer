@@ -28,9 +28,9 @@ public class StandingController {
     }
 
     @RequestMapping("/standing")
-    public ResponseEntity<String> getStanding(@RequestParam(value = "countryName") final String countryName,
-                                              @RequestParam(value = "leagueName") final String leagueName,
-                                              @RequestParam(value = "teamName") final String teamName) {
+    public ResponseEntity<String> getTeamStanding(@RequestParam(value = "countryName") final String countryName,
+                                                  @RequestParam(value = "leagueName") final String leagueName,
+                                                  @RequestParam(value = "teamName") final String teamName) {
 
         LOGGER.info(String.format("countryName: %s, leagueName: %s, teamName: %s", countryName, leagueName, teamName));
 
@@ -42,7 +42,7 @@ public class StandingController {
     private ResponseEntity<String> getLeagueAndTeamDetails(String countryId, final String leagueName, final String teamName) {
         return leagueService.getLeague(countryId, leagueName)
                 .map(league -> getTeamDetails(countryId, league.getLeagueId(), teamName))
-                .getOrElse(() -> ResponseEntity.badRequest().body("league does not exists."));
+                .getOrElse(() -> ResponseEntity.badRequest().body("League does not exists."));
     }
 
     private ResponseEntity<String> getTeamDetails(final String countryId, final String leagueId, final String teamName) {
@@ -51,7 +51,7 @@ public class StandingController {
                     teamStandingDetails.setCountryId(countryId);
                     return ResponseEntity.ok(responseBuilder(teamStandingDetails));
                 })
-                .getOrElse(() -> ResponseEntity.badRequest().body("team does not exists."));
+                .getOrElse(() -> ResponseEntity.badRequest().body("Team does not exists."));
     }
 
     private String responseBuilder(final TeamStandingDetails teamStandingDetails) {
